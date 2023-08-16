@@ -1,0 +1,37 @@
+{
+  "name": "ikepu-tp/laravel-admin",
+  "description": "",
+  "type": "library",
+  "keywords": [
+    "laravel",
+    "admin"
+  ],
+  "homepage": "https://rainbow-patissier.com",
+  "support": {
+    "issues": "https://github.com/ikepu-tp/laravel-admin/issues",
+    "source": "https://github.com/ikepu-tp/laravel-admin"
+  },
+  "require": {
+    "php": "^8.2",
+    "laravel/framework": "^10.8"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ikepu_tp\\LaravelAdmin\\": "./src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Yuma Ikeda",
+      "email": "programing@rainbow-patissier.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ikepu_tp\\LaravelAdmin\\LaravelAdminServiceProvider"
+      ]
+    }
+  }
+}

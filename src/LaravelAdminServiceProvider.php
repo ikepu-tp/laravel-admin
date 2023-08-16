@@ -1,0 +1,55 @@
+<?php
+
+namespace ikepu_tp\LaravelAdmin;
+
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
+
+class LaravelAdminServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__ . '/config/laravel-admin.php', 'laravel-admin');
+    }
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot(): void
+    {
+        $this->registerPublishing();
+        $this->defineRoutes();
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadViewsFrom(__DIR__ . "/resources/views", "laravelAdmin");
+        Paginator::useBootstrap();
+    }
+
+    /**
+     * Register the package's publishable resources.
+     */
+    private function registerPublishing()
+    {
+        if (!$this->app->runningInConsole()) return;
+
+        $this->publishes([
+            __DIR__ . '/config/laravelAdmin.php' => base_path('config/laravelAdmin.php'),
+        ], 'shorterUrl-config');
+
+        $this->publishes([
+            __DIR__ . '/resources/views' => resource_path('views/vendor/laravelAdmin'),
+        ], 'laravelAdmin-views');
+    }
+
+    /**
+     * Define the Sanctum routes.
+     *
+     * @return void
+     */
+    protected function defineRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__ . "/routes/web.php");
+    }
+}
