@@ -7,10 +7,10 @@ use ikepu_tp\LaravelAdmin\app\Http\Middleware\AdminMiddleware;
 Route::group([
     "middleware" => [
         "web",
-        "auth:" . config("laravelAdmin.gurad", "web"),
+        "auth:" . config("laravel-admin.gurad", "web"),
         AdminMiddleware::class,
     ],
-    "prefix" => config("laravelAdmin.prefix", ""),
+    "prefix" => config("laravel-admin.prefix", ""),
 ], function () {
     Route::resource("users", UserController::class)->names("laravelAdmin.user")->only(["index", "update"]);
 });
