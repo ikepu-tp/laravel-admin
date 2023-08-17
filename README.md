@@ -2,7 +2,7 @@
 
 This is a package for laravel admin. You can add a function to manage users as user to your laravel application.
 
-## How To
+## How to use
 
 Please add `use UserTrait;` to `User Model` which is defined at config file.
 
