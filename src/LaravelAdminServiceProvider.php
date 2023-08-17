@@ -37,7 +37,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         if (!$this->app->runningInConsole()) return;
 
         $this->publishes([
-            __DIR__ . '/config/laravelAdmin.php' => base_path('config/laravelAdmin.php'),
+            __DIR__ . '/config/laravel-admin.php' => base_path('config/laravel-admin.php'),
         ], 'laravelAdmin-config');
 
         $this->publishes([
