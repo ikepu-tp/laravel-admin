@@ -3,6 +3,7 @@
 namespace ikepu_tp\LaravelAdmin;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelAdminServiceProvider extends ServiceProvider
@@ -25,6 +26,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadViewsFrom(__DIR__ . "/resources/views", "laravelAdmin");
         Paginator::useBootstrap();
+        Blade::componentNamespace("ikepu_tp\\resources\\views\\components", "laravelAdmin");
     }
 
     /**
