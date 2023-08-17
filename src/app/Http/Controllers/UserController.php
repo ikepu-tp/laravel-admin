@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user_class = config("laravelAdmin.users");
+        $user_class = config("laravel-admin.users");
         return view("laravelAdmin::users.index", [
             "users" => $user_class::with("user_grants")->paginate($request->query("per", 10))->withQueryString(),
         ]);
@@ -56,7 +56,7 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $userUpdateRequest, string $user_id)
     {
-        $user_class = config("laravelAdmin.users");
+        $user_class = config("laravel-admin.users");
         //idの確認
         if (!$user = $user_class::find($user_id)) abort(404);
         //管理者の人数
