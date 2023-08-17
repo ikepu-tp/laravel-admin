@@ -2,6 +2,7 @@
 
 namespace ikepu_tp\LaravelAdmin;
 
+use ErrorException;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +35,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     private function registerPublishing()
     {
+
         if (!$this->app->runningInConsole()) return;
 
         $this->publishes([
@@ -43,6 +45,10 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/resources/views' => resource_path('views/vendor/laravelAdmin'),
         ], 'laravelAdmin-views');
+
+        $this->publishes([
+            __DIR__ . "/routes/web.php" => base_path("routes/laravel-admin.php"),
+        ], "laravelAdmin-route");
     }
 
     /**
@@ -52,6 +58,11 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     protected function defineRoutes()
     {
-        $this->loadRoutesFrom(__DIR__ . "/routes/web.php");
+        try {
+            $this->loadRoutesFrom(base_path("routes/laravel-admin.php"));
+        } catch (ErrorException $e) {
+            if (!file_exists(base_path("routes/laravel-admin.php"))) copy(__DIR__ . "/routes/web.php", base_path("routes/laravel-admin.php"));
+            $this->loadRoutesFrom(base_path("routes/laravel-admin.php"));
+        }
     }
 }
