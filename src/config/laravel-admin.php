@@ -22,4 +22,18 @@ return [
      * ----------------------------------------------------------------
      */
     "prefix" => "admin",
+
+    /**
+     * ----------------------------------------------------------------
+     * Navs
+     * ----------------------------------------------------------------
+     * 1. Set global navs with `route name` and `display name` which are functionalities for administrators.
+     * 2. Set views which are set above.
+     */
+    "navs" => [
+        [
+            "route_name" => "laravelAdmin.user.index",
+            "display_name" => "lists of users"
+        ],
+    ],
 ];
