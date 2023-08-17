@@ -38,7 +38,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/config/laravelAdmin.php' => base_path('config/laravelAdmin.php'),
-        ], 'shorterUrl-config');
+        ], 'laravelAdmin-config');
 
         $this->publishes([
             __DIR__ . '/resources/views' => resource_path('views/vendor/laravelAdmin'),
